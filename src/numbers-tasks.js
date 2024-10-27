@@ -73,6 +73,7 @@ function getAverage(value1, value2) {
 function getDistanceBetweenPoints(x1, y1, x2, y2) {
   return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 }
+
 //
 // /**
 //  * Returns a root of linear equation a*x + b = 0 given by coefficients a and b.
@@ -89,6 +90,7 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
 function getLinearEquationRoot(a, b) {
   return -b / a;
 }
+
 //
 // /**
 //  * Returns an angle (in radians) between two vectors given by xi and yi,
@@ -115,6 +117,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
   const res = Math.max(-1, Math.min(1, cos));
   return Math.acos(res);
 }
+
 //
 // /**
 //  * Returns a last digit of a integer number.
@@ -132,6 +135,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
 function getLastDigit(value) {
   return value % 10;
 }
+
 //
 // /**
 //  * Returns a number by given string representation.
@@ -147,6 +151,7 @@ function getLastDigit(value) {
 function parseNumberFromString(value) {
   return Number(value) ? value : 0;
 }
+
 //
 // /**
 //  * Returns a diagonal length of the rectangular parallelepiped given by its sides a,b,c.
@@ -164,6 +169,7 @@ function parseNumberFromString(value) {
 function getParallelepipedDiagonal(a, b, c) {
   return Math.sqrt(a ** 2 + b ** 2 + c ** 2);
 }
+
 //
 // /**
 //  * Returns the number rounded to specified power of 10.
@@ -185,6 +191,7 @@ function getParallelepipedDiagonal(a, b, c) {
 function roundToPowerOfTen(num, pow) {
   return Math.round(num / 10 ** pow) * 10 ** pow;
 }
+
 //
 // /**
 //  * Returns true is the number is prime; otherwise false.
@@ -203,9 +210,16 @@ function roundToPowerOfTen(num, pow) {
 //  *   16 => false
 //  *   17 => true
 //  */
-// function isPrime(/* n */) {
-//   throw new Error("Not implemented");
-// }
+function isPrime(n) {
+  const sqrt = Math.trunc(Math.sqrt(n));
+  for (let i = 2; i <= sqrt; i += 1) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
 //
 // /**
 //  * Tries to convert value to number and returns it if conversion was successful;
@@ -222,9 +236,10 @@ function roundToPowerOfTen(num, pow) {
 //  *   toNumber(42, 0) => 42
 //  *   toNumber(new Number(42), 0) => 42
 //  */
-// function toNumber(/* value, def */) {
-//   throw new Error("Not implemented");
-// }
+function toNumber(value, def) {
+  const res = Number(value);
+  return Number.isNaN(res) ? def : res;
+}
 //
 // /**
 //  * Returns the cube of the given number.
@@ -620,8 +635,8 @@ module.exports = {
   parseNumberFromString,
   getParallelepipedDiagonal,
   roundToPowerOfTen,
-  // isPrime,
-  // toNumber,
+  isPrime,
+  toNumber,
   // getCube,
   // getFibonacciNumber,
   // getSumToN,
