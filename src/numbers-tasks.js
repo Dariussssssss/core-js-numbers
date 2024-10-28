@@ -240,6 +240,7 @@ function toNumber(value, def) {
   const res = Number(value);
   return Number.isNaN(res) ? def : res;
 }
+
 //
 // /**
 //  * Returns the cube of the given number.
@@ -252,9 +253,10 @@ function toNumber(value, def) {
 //  *   -2 => -8
 //  *   0  => 0
 //  */
-// function getCube(/* num */) {
-//   throw new Error("Not implemented");
-// }
+function getCube(num) {
+  return num ** 3;
+}
+
 //
 // /**
 //  * Returns the Fibonacci number located at the index position.
@@ -269,9 +271,14 @@ function toNumber(value, def) {
 //  *   3  => 2
 //  *   10 => 55
 //  */
-// function getFibonacciNumber(/* index */) {
-//   throw new Error("Not implemented");
-// }
+function getFibonacciNumber(index) {
+  let count = 1;
+  for (let i = 0; i < index; i += 1) {
+    count += count;
+  }
+  return count;
+}
+
 //
 // /**
 //  * Returns the sum of all numbers from 1 to n.
@@ -284,9 +291,14 @@ function toNumber(value, def) {
 //  *   10 => 55 // (1+2+3+...+10)
 //  *   1  => 1
 //  */
-// function getSumToN(/* n */) {
-//   throw new Error("Not implemented");
-// }
+function getSumToN(n) {
+  let count = 0;
+  for (let i = 0; i <= n; i += 1) {
+    count += i;
+  }
+  return count;
+}
+
 //
 // /**
 //  * Returns the sum of the digits of a given number.
@@ -299,9 +311,13 @@ function toNumber(value, def) {
 //  *   202 => 4  // (2+0+2)
 //  *   5   => 5  // 5
 //  */
-// function getSumOfDigits(/* num */) {
-//   throw new Error("Not implemented");
-// }
+function getSumOfDigits(num) {
+  return String(num)
+    .split('')
+    .map(Number)
+    .reduce((sum, digit) => sum + digit, 0);
+}
+
 //
 // /**
 //  * Returns true if the given number is a power of two, false otherwise.
@@ -314,9 +330,10 @@ function toNumber(value, def) {
 //  *   16  => true
 //  *   15  => false
 //  */
-// function isPowerOfTwo(/* num */) {
-//   throw new Error("Not implemented");
-// }
+function isPowerOfTwo(num) {
+  return num % Math.log2(num) !== 0;
+}
+
 //
 // /**
 //  * Returns the sine of a number.
@@ -328,9 +345,10 @@ function toNumber(value, def) {
 //  *   0 => 0
 //  *   Math.PI / 2 => 1
 //  */
-// function getSine(/* num */) {
-//   throw new Error("Not implemented");
-// }
+function getSine(num) {
+  return Math.sin(num);
+}
+
 //
 // /**
 //  * Returns a string representation of a number in a specified base (radix).
@@ -372,10 +390,10 @@ function toNumber(value, def) {
 //  * 12345, 2    => '12345.00'
 //  * 12.345, 1   => '12.3'
 //  */
-// function toFixed(/* number, fractionDigits */) {
-//   throw new Error("Not implemented");
-// }
-//
+function toFixed(number, fractionDigits) {
+  return parseFloat(number).toFixed(fractionDigits);
+}
+
 // /**
 //  * Returns a string representation of a number in normal (fixed-point or exponential)
 //  * notation rounded to precision significant digits.
@@ -637,12 +655,12 @@ module.exports = {
   roundToPowerOfTen,
   isPrime,
   toNumber,
-  // getCube,
-  // getFibonacciNumber,
-  // getSumToN,
-  // getSumOfDigits,
-  // isPowerOfTwo,
-  // getSine,
+  getCube,
+  getFibonacciNumber,
+  getSumToN,
+  getSumOfDigits,
+  isPowerOfTwo,
+  getSine,
   // numberToStringInBase,
   // isSafeInteger,
   // roundToLargestInteger,
@@ -652,7 +670,7 @@ module.exports = {
   // isNumber,
   // isInteger,
   // toExponential,
-  // toFixed,
+  toFixed,
   // toPrecision,
   // getNumberValue,
   // getFloatOnString,
