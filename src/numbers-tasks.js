@@ -408,14 +408,7 @@ function toFixed(number, fractionDigits) {
 //  * 12.345, 4   => '12.35'
 //  */
 function toPrecision(number, precision) {
-  let res;
-  if (String(number).length > precision) {
-    const fix = String(number).length - precision;
-    res = number.toFixed(fix);
-  } else {
-    res = number.toFixed(precision);
-  }
-  return res;
+  return number.toPrecision(precision);
 }
 
 //
@@ -430,7 +423,7 @@ function toPrecision(number, precision) {
 //  * Number(-5)    => -5
 //  */
 function getNumberValue(number) {
-  return Number(number);
+  return number.valueOf();
 }
 
 //
@@ -479,7 +472,7 @@ function isInteger(number) {
 //  * 'abcdefgh'      => NaN
 //  */
 function getFloatOnString(str) {
-  return parseFloat(str);
+  return Number.parseFloat(str);
 }
 
 //
@@ -497,9 +490,9 @@ function getFloatOnString(str) {
 //  * '1.234', 2           => 1
 //  * '10', 8              => 8
 //  */
-// function getIntegerOnString(str, base) {
-//   return parseInt(str);
-// }
+function getIntegerOnString(str, base) {
+  return Number.parseInt(str, base);
+}
 //
 // /**
 //  * Returns whether a number is a safe integer.
@@ -512,9 +505,9 @@ function getFloatOnString(str) {
 //  * 3.5      => false
 //  * 2 ** 53  => false
 //  */
-// function isSafeInteger(/* number */) {
-//   throw new Error("Not implemented");
-// }
+function isSafeInteger(number) {
+  return Number.isSafeInteger(number);
+}
 //
 // /**
 //  * Returns the smallest integer less than or equal to a given number.
@@ -540,9 +533,9 @@ function roundToSmallestInteger(number) {
 //  * 5.1  => 6
 //  * -5.9 => -5
 //  */
-// function roundToLargestInteger(/* number */) {
-//   throw new Error("Not implemented");
-// }
+function roundToLargestInteger(number) {
+  return Math.ceil(number);
+}
 //
 // /**
 //  * Returns the value of a number rounded to the nearest integer.
@@ -603,9 +596,9 @@ function getSumOfNumbers(x1, x2, x3) {
 //  * -5, -6 => -5
 //  * 0, 5   => 5
 //  */
-// function getMaxNumber(/* firstNumber, secondNumber */) {
-//   throw new Error("Not implemented");
-// }
+function getMaxNumber(firstNumber, secondNumber) {
+  return Math.max(firstNumber, secondNumber);
+}
 //
 // /**
 //  * Returns a random integer in the range from min to max.
@@ -680,8 +673,8 @@ module.exports = {
   isPowerOfTwo,
   getSine,
   numberToStringInBase,
-  // isSafeInteger,
-  // roundToLargestInteger,
+  isSafeInteger,
+  roundToLargestInteger,
   roundToSmallestInteger,
   // roundToNearestInteger,
   getSumOfNumbers,
@@ -692,9 +685,9 @@ module.exports = {
   toPrecision,
   getNumberValue,
   getFloatOnString,
-  // getIntegerOnString,
+  getIntegerOnString,
   // getIntegerPartNumber,
-  // getMaxNumber,
+  getMaxNumber,
   // getRandomInteger,
   getHypotenuse,
   getCountOfOddNumbers,
