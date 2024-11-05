@@ -272,11 +272,16 @@ function getCube(num) {
 //  *   10 => 55
 //  */
 function getFibonacciNumber(index) {
-  let count = 1;
-  for (let i = 0; i < index; i += 1) {
-    count += count;
+  let a = 0;
+  let b = 1;
+
+  for (let i = 2; i <= index; i += 1) {
+    const temp = a + b;
+    a = b;
+    b = temp;
   }
-  return count;
+
+  return index === 0 ? a : b;
 }
 
 //
@@ -331,7 +336,8 @@ function getSumOfDigits(num) {
 //  *   15  => false
 //  */
 function isPowerOfTwo(num) {
-  return num % Math.log2(num) !== 0;
+  if (num <= 0) return false;
+  return Math.log2(num) % 1 === 0;
 }
 
 //
@@ -548,9 +554,9 @@ function roundToLargestInteger(number) {
 //  * 5.4  => 5
 //  * -5.5 => -5
 //  */
-// function roundToNearestInteger(/* number */) {
-//   throw new Error("Not implemented");
-// }
+function roundToNearestInteger(number) {
+  return Math.round(number);
+}
 //
 // /**
 //  * Returns the integer part of a number by removing any fractional digits.
@@ -563,9 +569,9 @@ function roundToLargestInteger(number) {
 //  * 5.4  => 5
 //  * -5.5 => -5
 //  */
-// function getIntegerPartNumber(/* number */) {
-//   throw new Error("Not implemented");
-// }
+function getIntegerPartNumber(number) {
+  return Math.trunc(number);
+}
 //
 // /**
 //  * Returns the sum of numbers.
@@ -612,9 +618,9 @@ function getMaxNumber(firstNumber, secondNumber) {
 //  * -5, 0 => -5 | -4 | -3 | -2 | -1 | 0
 //  * -1, 1 => -1 | 0 | 1
 //  */
-// function getRandomInteger(/* min, max */) {
-//   throw new Error("Not implemented");
-// }
+function getRandomInteger(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
 //
 // /**
 //  * Returns the length of the hypotenuse of a right triangle.
@@ -676,7 +682,7 @@ module.exports = {
   isSafeInteger,
   roundToLargestInteger,
   roundToSmallestInteger,
-  // roundToNearestInteger,
+  roundToNearestInteger,
   getSumOfNumbers,
   isNumber,
   isInteger,
@@ -686,9 +692,9 @@ module.exports = {
   getNumberValue,
   getFloatOnString,
   getIntegerOnString,
-  // getIntegerPartNumber,
+  getIntegerPartNumber,
   getMaxNumber,
-  // getRandomInteger,
+  getRandomInteger,
   getHypotenuse,
   getCountOfOddNumbers,
 };
