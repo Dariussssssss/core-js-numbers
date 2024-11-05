@@ -376,9 +376,9 @@ function numberToStringInBase(number, base) {
 //  * @example:
 //  * 12345, 2    => '1.23e+4'
 //  */
-// function toExponential(/* number, fractionDigits */) {
-//   throw new Error("Not implemented");
-// }
+function toExponential(number, fractionDigits) {
+  return number.toExponential(fractionDigits);
+}
 //
 // /**
 //  * Returns a string representation of a number in fixed-point notation.
@@ -432,6 +432,7 @@ function toPrecision(number, precision) {
 function getNumberValue(number) {
   return Number(number);
 }
+
 //
 // /**
 //  * Returns a boolean value indicating whether the parameter is a number or not.
@@ -448,9 +449,9 @@ function getNumberValue(number) {
 //  * 5        => true
 //  * '5'      => false
 //  */
-// function isNumber(/* number */) {
-//   throw new Error("Not implemented");
-// }
+function isNumber(number) {
+  return Number.isFinite(number);
+}
 //
 // /**
 //  * Returns a boolean value indicating whether a number is an integer or not.
@@ -463,9 +464,9 @@ function getNumberValue(number) {
 //  * 5.1  => false
 //  * '5'  => false
 //  */
-// function isInteger(/* number */) {
-//   throw new Error("Not implemented");
-// }
+function isInteger(number) {
+  return Number.isInteger(number);
+}
 //
 // /**
 //  * Returns a floating point number or, if the number cannot be parsed from the argument, returns NaN.
@@ -480,6 +481,7 @@ function getNumberValue(number) {
 function getFloatOnString(str) {
   return parseFloat(str);
 }
+
 //
 // /**
 //  * Returns an integer of the specified base or, if the number cannot be parsed
@@ -495,8 +497,8 @@ function getFloatOnString(str) {
 //  * '1.234', 2           => 1
 //  * '10', 8              => 8
 //  */
-// function getIntegerOnString(/* str, base */) {
-//   throw new Error("Not implemented");
+// function getIntegerOnString(str, base) {
+//   return parseInt(str);
 // }
 //
 // /**
@@ -524,9 +526,9 @@ function getFloatOnString(str) {
 //  * 5.9  => 5
 //  * -5.1 => -6
 //  */
-// function roundToSmallestInteger(/* number */) {
-//   throw new Error("Not implemented");
-// }
+function roundToSmallestInteger(number) {
+  return Math.floor(number);
+}
 //
 // /**
 //  * Returns the largest integer greater than or equal to a given number.
@@ -584,9 +586,10 @@ function getFloatOnString(str) {
 //  * 1, 2, 3       => 6
 //  * 0.1, 0.2, 0.3 => 0.6
 //  */
-// function getSumOfNumbers(/* x1, x2, x3 */) {
-//   throw new Error("Not implemented");
-// }
+function getSumOfNumbers(x1, x2, x3) {
+  const sum = x1 + x3 + x2;
+  return sum.toFixed(1);
+}
 //
 // /**
 //  * Returns the largest number.
@@ -630,9 +633,9 @@ function getFloatOnString(str) {
 //  * @example:
 //  * 3, 4 => 5
 //  */
-// function getHypotenuse(/* a, b */) {
-//   throw new Error("Not implemented");
-// }
+function getHypotenuse(a, b) {
+  return Math.hypot(a, b);
+}
 //
 // /**
 //  * Returns count of odd numbers from zero to the resulting number.
@@ -647,9 +650,15 @@ function getFloatOnString(str) {
 //  * 10 => 5
 //  * 15 => 8
 //  */
-// function getCountOfOddNumbers(/* number */) {
-//   throw new Error("Not implemented");
-// }
+function getCountOfOddNumbers(number) {
+  let sum = 0;
+  for (let i = 0; i <= Math.abs(number); i += 1) {
+    if (i % 2 !== 0) {
+      sum += 1;
+    }
+  }
+  return sum;
+}
 
 module.exports = {
   getRectangleArea,
@@ -673,12 +682,12 @@ module.exports = {
   numberToStringInBase,
   // isSafeInteger,
   // roundToLargestInteger,
-  // roundToSmallestInteger,
+  roundToSmallestInteger,
   // roundToNearestInteger,
-  // getSumOfNumbers,
-  // isNumber,
-  // isInteger,
-  // toExponential,
+  getSumOfNumbers,
+  isNumber,
+  isInteger,
+  toExponential,
   toFixed,
   toPrecision,
   getNumberValue,
@@ -687,6 +696,6 @@ module.exports = {
   // getIntegerPartNumber,
   // getMaxNumber,
   // getRandomInteger,
-  // getHypotenuse,
-  // getCountOfOddNumbers
+  getHypotenuse,
+  getCountOfOddNumbers,
 };
