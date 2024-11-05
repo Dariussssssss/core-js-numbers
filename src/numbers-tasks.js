@@ -361,9 +361,10 @@ function getSine(num) {
 //  * 255, 16 => 'ff'
 //  * 2, 2    => '10'
 //  */
-// function numberToStringInBase(/* number, base */) {
-//   throw new Error("Not implemented");
-// }
+function numberToStringInBase(number, base) {
+  return number.toString(base);
+}
+
 //
 // /**
 //  * Returns a string representation of a number in exponential notation.
@@ -406,9 +407,17 @@ function toFixed(number, fractionDigits) {
 //  * 12345, 7    => '12345.00'
 //  * 12.345, 4   => '12.35'
 //  */
-// function toPrecision(/* number, precision */) {
-//   throw new Error("Not implemented");
-// }
+function toPrecision(number, precision) {
+  let res;
+  if (String(number).length > precision) {
+    const fix = String(number).length - precision;
+    res = number.toFixed(fix);
+  } else {
+    res = number.toFixed(precision);
+  }
+  return res;
+}
+
 //
 // /**
 //  * Returns the primitive value of a Number object.
@@ -420,9 +429,9 @@ function toFixed(number, fractionDigits) {
 //  * new Number(5) => 5
 //  * Number(-5)    => -5
 //  */
-// function getNumberValue(/* number */) {
-//   throw new Error("Not implemented");
-// }
+function getNumberValue(number) {
+  return Number(number);
+}
 //
 // /**
 //  * Returns a boolean value indicating whether the parameter is a number or not.
@@ -468,9 +477,9 @@ function toFixed(number, fractionDigits) {
 //  * '4.567abcdefgh' => 4.567
 //  * 'abcdefgh'      => NaN
 //  */
-// function getFloatOnString(/* str */) {
-//   throw new Error("Not implemented");
-// }
+function getFloatOnString(str) {
+  return parseFloat(str);
+}
 //
 // /**
 //  * Returns an integer of the specified base or, if the number cannot be parsed
@@ -661,7 +670,7 @@ module.exports = {
   getSumOfDigits,
   isPowerOfTwo,
   getSine,
-  // numberToStringInBase,
+  numberToStringInBase,
   // isSafeInteger,
   // roundToLargestInteger,
   // roundToSmallestInteger,
@@ -671,9 +680,9 @@ module.exports = {
   // isInteger,
   // toExponential,
   toFixed,
-  // toPrecision,
-  // getNumberValue,
-  // getFloatOnString,
+  toPrecision,
+  getNumberValue,
+  getFloatOnString,
   // getIntegerOnString,
   // getIntegerPartNumber,
   // getMaxNumber,
